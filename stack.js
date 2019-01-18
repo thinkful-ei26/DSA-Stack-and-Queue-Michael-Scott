@@ -116,30 +116,50 @@ function matching(s) {
     }
   }
 }
-console.log(matching("heloo here is the string( ( fir tge  asdasd ))"));
+// console.log(matching("heloo here is the string( ( fir tge  asdasd ))"));
 
-function sort (stack) {
-  let sortedStack = new Stack();
+const testStack = new Stack();
+
+testStack.push(3);
+testStack.push(2);
+testStack.push(3);
+testStack.push(1);
+
+function sort(stack) {
+  // still needs error check for if the stack is at the top!!
   let currentNode = stack.top;
-  let currentMax = 0;
-  while(currentNode !== null){
-    if (currentNode.data > currentMax) {
-      currentMax = currentNode.data;
-      sortedStack.push(currentMax)
-    }
+  let sorts = 1;
+  let prevNode = stack.top;
+  while (sorts !== 0) {
+    sorts--;
+    while (currentNode !== null) {
+      if (currentNode.next !== null) {
+        if (currentNode.data > currentNode.next.data) {
+          // console.log("hello");
+          // console.log(currentNode.data);
+          // console.log(currentNode.next.data);
+          let temp = currentNode;
+          prevNode.next = currentNode.next;
+          currentNode.next = currentNode.next.next;
+          prevNode.next.next = currentNode;
 
+          sorts++;
+        }
+      }
+      prevNode = currentNode;
+      currentNode = currentNode.next;
+    }
+  }
+  currentNode = stack.top;
+  while (currentNode !== null) {
+    console.log(currentNode.data);
     currentNode = currentNode.next;
   }
+
+  return stack;
 }
 
-
-
-
-
-
-
-
-
+sort(testStack);
 
 // true, true, true
 // console.log(is_palindrome("dad"));
