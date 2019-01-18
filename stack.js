@@ -54,24 +54,70 @@ function is_palindrome(s) {
   let arr = s.split("");
   let newStr = "";
   const pStack = new Stack();
-  for (let i = 0; i < arr.length; i++ ) {
+  for (let i = 0; i < arr.length; i++) {
     pStack.push(arr[i]);
   }
-  for (let i = 0; i < arr.length; i++ ) {
+  for (let i = 0; i < arr.length; i++) {
     let pStr = pStack.pop();
     newStr += pStr;
   }
 
-  if (s === newStr){
+  if (s === newStr) {
     return s + " is a palindrome";
-  }else{
+  } else {
     return s + " is a not palindrome";
   }
 }
 
+function matching(s) {
+  // get indexes
+  let openArr = [];
+  let closedArr = [];
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === "(") {
+      openArr.push(i);
+    }
+    if (s[i] === ")") {
+      closedArr.push(i);
+    }
+  }
 
+  s = s.replace(/[^()]/g, "");
+  console.log(s);
+  let count = 0;
+  const aStack = new Stack();
+  for (let i = 0; i < s.length; i++) {
+    aStack.push(s[i]);
+  }
+  for (let i = 0; i < s.length; i++) {
+    let item = aStack.pop();
+    if (item === "(") {
+      count++;
+    } else if (item === ")") {
+      count--;
+    }
+  }
+  if (count === 0) {
+    return true;
+  } else {
+    if (openArr.length > closedArr.length) {
+      throw new Error(
+        `There was an extra open parenthesis at index: ${
+          openArr[openArr.length - 1]
+        }`
+      );
+    }
+    if (openArr.length < closedArr.length) {
+      throw new Error(
+        `There was an extra closed parenthesis at index: ${
+          closedArr[closedArr.length - 1]
+        }`
+      );
+    }
+  }
+}
 
-
+console.log(matching("heloo here is the string( ( fir tge  asdasd )))"));
 // true, true, true
 // console.log(is_palindrome("dad"));
 // console.log(is_palindrome("A man, a plan, a canal: Panama"));
