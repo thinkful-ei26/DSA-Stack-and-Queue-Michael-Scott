@@ -49,13 +49,42 @@ class Stack {
   }
 }
 
-const newStack = new Stack();
+function is_palindrome(s) {
+  s = s.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
+  let arr = s.split("");
+  let newStr = "";
+  const pStack = new Stack();
+  for (let i = 0; i < arr.length; i++ ) {
+    pStack.push(arr[i]);
+  }
+  for (let i = 0; i < arr.length; i++ ) {
+    let pStr = pStack.pop();
+    newStr += pStr;
+  }
 
-newStack.push(1);
-newStack.push(2);
-newStack.push(3);
-newStack.push(4);
-newStack.push(5);
-newStack.push(6);
+  if (s === newStr){
+    return s + " is a palindrome";
+  }else{
+    return s + " is a not palindrome";
+  }
+}
 
-newStack.display();
+
+
+
+// true, true, true
+// console.log(is_palindrome("dad"));
+// console.log(is_palindrome("A man, a plan, a canal: Panama"));
+// console.log(is_palindrome("1001"));
+// console.log(is_palindrome("Tauhida"));
+
+//const starTrek = new Stack();
+//
+// starTrek.push("Kirk");
+// starTrek.push("Spock");
+// starTrek.push("McCoy");
+// starTrek.push("Scott");
+// starTrek.pop();
+// starTrek.pop();
+//
+// starTrek.display();
