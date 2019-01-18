@@ -166,3 +166,61 @@ function sortStack(stack) {
 }
 
 sortStack(testStack).display();
+
+const retStack = new Stack();
+const inputStack = new Stack();
+
+// Create a queue from two stacks
+// simulate enqueue and dequeue with push and pop
+// enqueue: push to stack
+// dequeue: pop all to second stack then dequeue the last item in the first stack then pop all from second back onto first.
+// 1 2 3
+// think about them and try to give them meaning
+// 3 2
+//
+
+/*
+  enqueue array takes the 
+  dequeue
+*/
+// function doubleStackEnqueue(x){
+
+//   while(stack.top){
+//     stack2.push(stack.pop());
+//   }
+
+//   stack.push(x);
+
+//   while(stack2.top){
+//     stack.push(stack2.pop());
+//   }
+
+// }
+
+// function doubleStackDequeue(){
+
+//   if(stack.isEmpty()){
+//     console.log('Stack is empty');
+//     return;
+//   }
+
+//   let value = stack.peek();
+//   stack.pop();
+//   return value;
+// }
+
+//  square dancing problem breakdown
+
+/*
+  We would create a queue that would hold objects containing a name and a gender.
+  We would start to recieve dancers via new dancer method.
+  As dancers arrive we would check to see if the queue is empty if empty put the dancer in the queue.
+  As more arrive check again and if its not empty check to see if the gender of that person in queue is the opposite if so dance them both, if not add person2 to the queue as well.
+*/
+
+// the bank
+
+/*
+  run through the queue with the randomized failures of 25%
+  Observe things
+*/
