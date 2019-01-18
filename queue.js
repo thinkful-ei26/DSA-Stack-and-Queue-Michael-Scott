@@ -1,6 +1,8 @@
 class _Node {
   constructor(value) {
-    (this.value = value), (this.next = null), (this.prev = null);
+    this.value = value,
+    this.next = null,
+    this.prev = null;
   }
 }
 class Queue {
@@ -47,4 +49,31 @@ class Queue {
 
     return node.value;
   }
+
+  peek() {
+    return this.first;
+  }
+
+  display() {
+    if (this.first !== null) {
+      let currNode = this.first;
+      while (currNode !== null) {
+        console.log(currNode.value);
+        currNode = currNode.prev;
+      }
+    }
+  }
 }
+
+const starTrek = new Queue();
+
+starTrek.enqueue("Kirk");
+starTrek.enqueue("Spock");
+starTrek.enqueue("Uhura");
+starTrek.enqueue("Sulu");
+starTrek.enqueue("Checkov");
+starTrek.dequeue();
+starTrek.dequeue();
+
+
+JSON.stringify(starTrek.display());
