@@ -116,8 +116,31 @@ function matching(s) {
     }
   }
 }
+console.log(matching("heloo here is the string( ( fir tge  asdasd ))"));
 
-console.log(matching("heloo here is the string( ( fir tge  asdasd )))"));
+function sort (stack) {
+  let sortedStack = new Stack();
+  let currentNode = stack.top;
+  let currentMax = 0;
+  while(currentNode !== null){
+    if (currentNode.data > currentMax) {
+      currentMax = currentNode.data;
+      sortedStack.push(currentMax)
+    }
+
+    currentNode = currentNode.next;
+  }
+}
+
+
+
+
+
+
+
+
+
+
 // true, true, true
 // console.log(is_palindrome("dad"));
 // console.log(is_palindrome("A man, a plan, a canal: Panama"));
