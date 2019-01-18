@@ -10,6 +10,13 @@ class Stack {
   constructor() {
     this.top = null;
   }
+  isEmpty() {
+    if (this.top === null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   push(data) {
     //if the top of the stack is empty, then the data will be the
     //top of the stack
@@ -119,61 +126,43 @@ function matching(s) {
 // console.log(matching("heloo here is the string( ( fir tge  asdasd ))"));
 
 const testStack = new Stack();
-
+testStack.push(8);
+testStack.push(7);
 testStack.push(3);
 testStack.push(2);
-testStack.push(3);
+testStack.push(6);
+testStack.push(4);
 testStack.push(1);
 
-function sort(stack) {
-  // still needs error check for if the stack is at the top!!
-  let currentNode = stack.top;
-  let sorts = 1;
-  let prevNode = stack.top;
-  while (sorts !== 0) {
-    sorts--;
-    while (currentNode !== null) {
-      if (currentNode.next !== null) {
-        if (currentNode.data > currentNode.next.data) {
-          // console.log("hello");
-          // console.log(currentNode.data);
-          // console.log(currentNode.next.data);
-          let temp = currentNode;
-          prevNode.next = currentNode.next;
-          currentNode.next = currentNode.next.next;
-          prevNode.next.next = currentNode;
-
-          sorts++;
-        }
-      }
-      prevNode = currentNode;
-      currentNode = currentNode.next;
+function sortStack(stack) {
+  //step 1
+  let tempStack = new Stack();
+  // step 2
+  while (stack.isEmpty() !== true) {
+    // step 3
+    let tempNode = stack.pop();
+    // console.log("data: ", tempNode);
+    // step 4
+    while (tempStack.isEmpty() !== true && tempStack.peek().data < tempNode) {
+      // console.log(tempNode);
+      stack.push(tempStack.pop());
     }
-  }
-  currentNode = stack.top;
-  while (currentNode !== null) {
-    console.log(currentNode.data);
-    currentNode = currentNode.next;
+    // step 5
+    // console.log("temp stack is empty: ", tempStack.isEmpty() !== true);
+    // console.log(tempNode);
+    if (tempStack.peek() !== null) {
+      // console.log("The peek data from tempStack: ", tempStack.peek().data);
+      // console.log("The tempNode data that was popped: ", tempNode.data);
+      // console.log(
+      //   "tempStack.peek() > tempNode:",
+      //   tempStack.peek().data > tempNode.data
+      // );
+    }
+    tempStack.push(tempNode);
   }
 
-  return stack;
+  // step return the sorted stack
+  return tempStack;
 }
 
-sort(testStack);
-
-// true, true, true
-// console.log(is_palindrome("dad"));
-// console.log(is_palindrome("A man, a plan, a canal: Panama"));
-// console.log(is_palindrome("1001"));
-// console.log(is_palindrome("Tauhida"));
-
-//const starTrek = new Stack();
-//
-// starTrek.push("Kirk");
-// starTrek.push("Spock");
-// starTrek.push("McCoy");
-// starTrek.push("Scott");
-// starTrek.pop();
-// starTrek.pop();
-//
-// starTrek.display();
+sortStack(testStack).display();
